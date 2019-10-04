@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-const App: React.FC = () => {
-  const [counter, CountUp] = useState(0);
+interface Props {
+  default: number,
+}
+
+const App: React.FC<Props> = (props) => {
+  const [counter, countUp] = useState(props.default);
   
   return (
     <div className="App">
@@ -11,7 +15,7 @@ const App: React.FC = () => {
         <p>
           count: {counter}
         </p>
-        <button onClick={() => CountUp(counter + 1)}>push</button>
+        <button onClick={() => countUp(counter + 1)}>push</button>
       </header>
     </div>
   );
