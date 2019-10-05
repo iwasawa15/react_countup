@@ -1,7 +1,8 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, FC, Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Layout from './layout'
+import { BrowserRouter, Route, Link, RouteComponentProps } from 'react-router-dom';
 
 interface Props {
   default: number,
@@ -9,19 +10,60 @@ interface Props {
 
 const App: React.FC<Props> = (props) => {
   const [counter, countUp] = useState(props.default);
+
+  function count(){
+    countUp(counter + 1)
+  }
   
   return (
     <div className="App">
       <Layout>
-        <Fragment>
-          <p>
-            count: {counter}
-          </p>
-          <button onClick={() => countUp(counter + 1)}>push</button>
-        </Fragment>
+        <BrowserRouter>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/firework">Firework</Link></li>
+            <li><Link to="/hungry">Hungry</Link></li>
+          </ul>
+          <Route exact path='/' render={props => <Home count={count} counter={counter}/>} />
+          <Route exact path='/firework' component={Firework} />
+          <Route exact path='/hungry' component={Hungry} />          
+        </BrowserRouter>
       </Layout>
     </div>
   );
 }
+
+interface HomeProps {
+  count: () => void,
+  counter: number
+}
+
+const Home: FC<HomeProps> = (props) => {
+  function handleClick(e: React.MouseEvent<HTMLElement>){
+    props.count();
+  }
+
+  return(
+    <div>
+      home画面だよ
+      <p>
+        count: {props.counter}
+      </p>
+      <button onClick={handleClick}>push</button>
+    </div>
+  )
+}
+
+const Firework = () => (
+  <div>
+    はーーなーーービーーーーー
+  </div>
+)
+
+const Hungry = () => (
+  <div>
+    お腹すいたー
+  </div>
+)
 
 export default App;
