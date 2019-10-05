@@ -1,19 +1,22 @@
 import { render } from "react-dom"
-import React, { useState } from 'react';
+import React, { useState, ReactNode, FC, Fragment } from 'react';
 
-const Layout = ({children}: HTMLElement) => {
+interface Props {
+}
+
+const Layout: FC<Props> = (props) => {
   return(
-    <>
+    <Fragment>
       <header>
         hello
       </header>
       <div>
-        {children}
+        {props.children}
       </div>
       <footer>
-        Atrae, Int.
+        Atrae, Inc.
       </footer>
-    </>
+    </ Fragment>
   )
 }
 
