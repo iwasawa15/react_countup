@@ -1,5 +1,6 @@
 import { render } from "react-dom"
 import React, { useState, ReactNode, FC, Fragment } from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 
 interface Props {
 }
