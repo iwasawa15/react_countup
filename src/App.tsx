@@ -3,6 +3,9 @@ import logo from './logo.svg';
 import './App.sass';
 import Layout from './layout'
 import { BrowserRouter, Route, Link, RouteComponentProps, Switch } from 'react-router-dom';
+import Home from './components/home';
+import Firework from './components/firework';
+import Hungry from './components/hungry';
 
 interface Props {
   default: number,
@@ -32,38 +35,5 @@ const App: React.FC<Props> = (props) => {
     </div>
   );
 }
-
-interface HomeProps {
-  count: () => void,
-  counter: number
-}
-
-const Home: FC<HomeProps> = (props) => {
-  function handleClick(e: React.MouseEvent<HTMLElement>){
-    props.count();
-  }
-
-  return(
-    <div>
-      home画面だよ
-      <p>
-        count: {props.counter}
-      </p>
-      <button onClick={handleClick}>push</button>
-    </div>
-  )
-}
-
-const Firework = () => (
-  <div>
-    はーーなーーービーーーーー
-  </div>
-)
-
-const Hungry = () => (
-  <div>
-    お腹すいたー
-  </div>
-)
 
 export default App;
